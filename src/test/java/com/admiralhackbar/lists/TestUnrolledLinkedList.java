@@ -31,4 +31,20 @@ public class TestUnrolledLinkedList {
         Assert.assertTrue(list.contains(2));
         Assert.assertEquals(-1, list.indexOf(5));
     }
+
+    @Test
+    public void testInteration() {
+        final UnrolledLinkedList<Integer> list = new UnrolledLinkedList(2);
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        int i = 0;
+        for(final int val : list) {
+            Assert.assertEquals(i, val);
+            i++;
+        }
+    }
 }

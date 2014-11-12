@@ -1,5 +1,6 @@
 package com.admiralhackbar.datastructs.lists;
 
+import com.admiralhackbar.datastructs.lists.ull.ULLIterator;
 import com.admiralhackbar.datastructs.lists.ull.ULLNode;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -39,7 +40,7 @@ public class UnrolledLinkedList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new ULLIterator<T>(head);
     }
 
     @Override
