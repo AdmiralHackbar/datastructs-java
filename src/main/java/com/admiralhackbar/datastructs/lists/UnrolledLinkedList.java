@@ -50,6 +50,9 @@ public class UnrolledLinkedList<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
+
+        final T[] arr = (T[]) new Object[length];
+        
         return null;
     }
 
