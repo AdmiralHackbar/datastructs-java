@@ -49,11 +49,11 @@ public class ULLNode<T> {
 
     public void insert(final int idx, @Nonnull final T value) {
         if (arr.length == size) {
-            // TODO: Do some sort of "balancing" of values here
-            final ULLNode newNext = new ULLNode(arr.length);
-            newNext.insert(0, arr[arr.length -1]);
-            newNext.setNext(this.next);
-            this.next = newNext;
+            this.next = split();
+            if (idx > size ) {
+                this.next.insert(idx - size, value);
+                return;
+            }
         }
 
         if (idx < size) {
@@ -72,5 +72,19 @@ public class ULLNode<T> {
             }
         }
         return -1;
+    }
+
+    // visble for testing
+    ULLNode<T> split() {
+        final ULLNode newNext = new ULLNode(arr.length);
+        System.arraycopy(arr, (arr.length + 1)/ 2, newNext.arr, 0, arr.length / 2);
+        newNext.size = arr.length / 2;
+        for (int i = (arr.length + 1) / 2; i < arr.length; i++) {
+            arr[i] = null;
+            --size;
+        }
+        newNext.next = this.next;
+        this.next = newNext;
+        return newNext;
     }
 }
